@@ -28,6 +28,23 @@ object CS143Utils {
     bytes.toByteArray
   }
 
+  //get the size of one row as opposed to the whole arraylist
+  def getRowSize(row:Row): Array[Byte] = {
+    // create a ObjectOutputStream backed by a ByteArrayOutputStream
+    val bytes = new ByteArrayOutputStream()
+    val out = new ObjectOutputStream(bytes)
+
+    // write the object to the output
+    out.writeObject(row)
+    out.flush()
+    out.close()
+    bytes.close()
+
+    // return the byte array
+    bytes.toByteArray
+  }
+
+
   /**
    * Converts an array of bytes into a JavaArrayList of type [[Row]].
    *
